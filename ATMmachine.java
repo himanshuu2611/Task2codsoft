@@ -1,5 +1,5 @@
 //ATM machine
-package com.packages;
+
 
 import java.util.Scanner;
 
