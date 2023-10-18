@@ -1,28 +1,30 @@
-//ATM machine
-
+//Inter face of ATM Machine !
+package com.packages;
 
 import java.util.Scanner;
 
 import static com.packages.atm.*;
 
 class atm{
+     static int balance=10000;
 
-    static int deposit(int a,int b){
-        int c=a+b;
+    static int deposit(int b){
+        balance=balance+b;
 
-        return c;
+        return balance;
         
     }
-    static int withdraw(int a,int b){
-        int c = 0;
-        if(a>=b){
-            c=a-b;
+    static int withdraw(int b){
+
+        if(balance>=b) {
+            balance = balance - b;
+
         }
 
-        return c;
+       return balance;
     }
-    static void checkbalance(int a){
-        System.out.println(a);
+    static void checkbalance(){
+        System.out.println(balance);
         
     }
     
@@ -30,7 +32,7 @@ class atm{
 public class atm2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int balance = 10000;
+//        int balance = 10000;
         System.out.println("WELCOME !");
         while (true) {
             System.out.println("1. deposit ");
@@ -45,25 +47,28 @@ public class atm2 {
                     System.out.print("enter amount to be deposit : ");
                     int damount = sc.nextInt();
 //                    int balance=10000;
-                    int depbalance;
-                    depbalance=deposit(balance,damount);
-                    System.out.println("succesfully deposited !");
-                    System.out.println("Total balance : "+depbalance);
-                    balance=depbalance;
+                    deposit(damount);
+                    System.out.println("successfully deposited");
+                    System.out.print("Your updated balance : ");
+                    checkbalance();
                     break;
 
                 case 2:
                     System.out.print("Enter Withdrawal amount  : ");
                     int wamount=sc.nextInt();
-                    int witbalance;
-                    witbalance=withdraw(balance,wamount);
-                    System.out.println("succesfully withdrawal !");
-                    System.out.println("Remaining amount : "+witbalance);
-                    balance=witbalance;
-                    break;
+                    if(wamount<=balance){
+                        withdraw(wamount);
+                        System.out.println("Withdrawal Succesfully ");
+                        System.out.print("Your updated balance : ");
+                        checkbalance();
+                    }else{
+                        System.out.println("Insufficient Balance !");
+                    }
+                        break;
 
                 case 3:
-                    System.out.println("Your Total  Balance : "+balance);
+                    System.out.print("Available Balance : ");
+                    checkbalance();
                     break;
 
                 case 4:
